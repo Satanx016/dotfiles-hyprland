@@ -1,0 +1,51 @@
+#!/bin/bash
+
+get() {
+  volume=$(amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[%]')
+  echo -n $volume
+}
+
+toggle_mute() {
+  amixer set Master 1+ toggle -q
+  set_icon
+}
+
+set_icon() {
+  volume=$(get)
+  if [[ $(amixer get Master | tail -n1 | grep -wo 'off') == "off" ]]; then
+    eww update vol_state=0
+  elif [[ $volume -ge 60 ]]; then
+    eww update vol_state=3
+  elif [[ $volume -ge 20 ]]; then
+    eww update vol_state=2
+  elif [[ $volume -ge 1 ]]; then
+    eww update vol_state=1
+  fi
+}
+
+inc() {
+  amixer set Master 1%+
+}
+
+dec() {
+  amixer set Master 1%-
+}
+
+#One arg at a time a w9
+case "$1" in
+"--get")
+  get
+  ;;
+"--toggle")
+  toggle_mute
+  ;;
+"--icon")
+  set_icon
+  ;;
+"--inc")
+  inc
+  ;;
+"--dec")
+  dec
+  ;;
+esac

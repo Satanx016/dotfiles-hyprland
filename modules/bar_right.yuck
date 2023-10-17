@@ -1,0 +1,170 @@
+(defwidget bar_right []
+  (box
+    :space-evenly "false"
+    :orientation "h"
+    :halign "center"
+    :class "bar-right"
+    (titlebar)
+    (system)
+    (clock)
+  )
+)
+
+(defwidget titlebar []
+  (box
+    :class "module"
+    (label
+      :class "titlebar-label txt-low"
+      :limit-width "10"
+      :text apptitles
+    )
+  )
+)
+
+(defwidget system []
+  (box
+    :space-evenly "false"
+    :orientation "h"
+    :spacing "10"
+    :halign "end"
+    :class "module"
+    (Toggles)
+    (sep)
+    (resources)
+  )
+)
+
+(defwidget Toggles []
+  (box ; Quick Toggles
+    :space-evenly false :spacing 7
+    (eventbox ; Brightness
+      :onhover "eww update bright_rev=true"
+      :onhoverlost "eww update bright_rev=false"
+      (box
+        :vexpand "false"
+        :hexpand "false"
+        :space-evenly "false"
+        (revealer
+          :transition "slideright"
+          :reveal bright_rev
+          :duration "350ms"
+        )
+        (revealer
+          :transition "slideright"
+          :reveal bright_rev
+          :duration "350ms"
+          (scale
+            :class "scale"
+            :value brightness_percent
+            :orientation "h"
+            :max 50
+            :min 0
+            :onchange "light -S {}"
+          )
+        )
+        (button
+          :class "icon" :style "padding-right:8px;font-size: 18;"
+          ""
+        )
+      )
+    )
+    (sep)
+    (eventbox ; Volume
+      :onhover "eww update vol_rev=true"
+      :onhoverlost "eww update vol_rev=false"
+      :onclick "scripts/volume --toggle"
+      (box
+        :vexpand "false"
+        :hexpand "false"
+        :space-evenly "false"
+        (revealer
+          :transition "slideright"
+          :reveal vol_rev
+          :duration "350ms"
+          (scale
+            :class "scale"
+            :value "${vol_percent}"
+            :orientation "h"
+            :max 100
+            :min 0
+            :onchange "amixer set Master {}% && scripts/volume --icon"
+          )
+        )
+        (label
+          :class "icon" :style "padding-right:4px;font-size: 21;"
+          :text {VOL_ICON[vol_state]}
+        )
+      )
+    )
+    (sep)
+    (box ; WIFI
+      :vexpand "false"
+      :hexpand "false"
+      :space-evenly "false" :spacing 2
+      (label
+        :class "icon" :style "padding-right: 17px"
+        :text ""
+      )
+      (label
+        :class "toggles-wifi-essid txt-low"
+        :text ESSID_WLAN
+      )
+    )
+  )
+)
+
+(defwidget resources []
+  (box
+    :space-evenly false :spacing 10
+    :orientation "h"
+    :valign "center"
+    (label
+      :class "icon"
+      :text "󰍛"
+    )
+    (box ; Resources
+      :space-evenly false :spacing 5
+      :orientation "v"
+      :valign "center"
+      (box ; CPU
+        :space-evenly false :orientation "h" :spacing 5
+        (progress
+          :class "prog-bar"
+          :valign "center"
+          :value {EWW_CPU.avg}
+        )
+      )
+      (box ; RAM
+        :space-evenly false :orientation "h" :spacing 5
+        (progress
+          :class "prog-bar"
+          :valign "center"
+          :value {EWW_RAM.used_mem_perc}
+        )
+      )
+    )
+  )
+)
+
+(defwidget clock []
+  (box
+    :space-evenly "false"
+    :orientation "h"
+    :spacing "10"
+    :class "module"
+    (label
+      :text ""
+    :class "icon")
+    (label
+    :text clock_time)
+  )
+)
+
+(defwidget powerview []
+  (box
+    :class "module"
+    (label
+      :class "icon" :style "padding-right: 2px"
+    :text "󰐥")
+  )
+)

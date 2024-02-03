@@ -1,5 +1,5 @@
 .bar {
-    padding: 5 0 0 0;
+    padding: 5px 0 0 0;
 }
 
 //#region left-bar
@@ -10,29 +10,29 @@
     background-repeat: no-repeat;
     background-size: 80%;
     background-position: right 55%;
-    border: 1 solid;
+    border: 1px solid;
     border-color: $unfocused;
-    border-radius: 25;
+    border-radius: 25px;
 }
 
 .music-cover {
-    margin: 2 2 2 2;
+    margin: 2px 2px 2px 2px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 200%;
-    border-radius: 25;
+    border-radius: 25px;
 }
 
 .music-label {
     color: $foreground;
-    font-size: 12;
+    font-size: 12px;
     font-weight: bolder;
 }
 
 .music-unlabel {
-    margin-left: 10;
+    margin-left: 10px;
     color: $foreground;
-    font-size: 14;
+    font-size: 14px;
     font-weight: bolder;
 }
 
@@ -44,33 +44,31 @@
 .ws {}
 
 @mixin ws-btn-font {
-    font-size: 16;
-    font-weight: bolder;
-    border: 2 solid;
+    
+}
+
+.ws-btn {
+    @extend .module;
+    padding: unset;
+    margin: unset;
 
     label {
         padding-bottom: 2px;
     }
-}
-
-.ws-btn {
-    @include ws-btn-font();
     background-color: $background;
     color: $foreground-alt;
     border-color: $unfocused;
 }
 
 .ws-btn-focused {
-    @include ws-btn-font();
+    @extend .ws-btn;
     color: $focused;
-    background-color: $background;
-    border-bottom: 4 solid;
+    border-bottom: 4px solid;
     border-color: $focused;
 }
 
 .ws-btn-active {
-    @include ws-btn-font();
-    background-color: $background;
+    @extend .ws-btn;
     color: $unfocused;
     border-color: $unfocused;
 }

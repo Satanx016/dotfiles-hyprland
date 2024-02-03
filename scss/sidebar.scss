@@ -7,16 +7,16 @@
 }
 
 .sidebar-title{
-    padding: 5;
+    padding: 5px;
 }
 
 .sidebar-title-text{
-    font-size: 18;
+    font-size: 18px;
     color: $foreground-accented;
 }
 
 .sidebar-subtitle{
-    font-size: 14;
+    font-size: 14px;
 }
 
 //#region sidebar music
@@ -29,7 +29,7 @@
 }
 
 .sidebar-music-box {
-    padding: 5 20 0 20;
+    padding: 5px 20px 0px 20px;
 }
 
 .sidebar-music-mediacontrols {
@@ -75,11 +75,11 @@
 //#region sidebar Waifu
 
 .sidebar-waifu-content{
-    padding: 10;
+    padding: 10px;
 }
 
 .sidebar-waifu-toggle{
-    padding: 2 5 2 5;
+    padding: 2px 5px 2px 5px;
     background-color: $background-accented;
     border-radius: 12px;
     min-height: 20px;
@@ -97,7 +97,7 @@
     background-color: $background-accented;
     border-radius: 12px;
     min-height: 20px;
-    font-size: 14;
+    font-size: 14px;
 
     &:hover{
         background-color: $unfocused;
@@ -122,7 +122,7 @@
 }
 
 .sidebar-quote-content {
-    padding: 10;
+    padding: 10px;
     background-color: $background-accented;
 }
 

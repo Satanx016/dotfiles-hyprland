@@ -4,20 +4,8 @@
     :orientation "h"
     :halign "center"
     :class "bar-right"
-    (titlebar)
     (system)
     (clock)
-  )
-)
-
-(defwidget titlebar []
-  (box
-    :class "module"
-    (label
-      :class "titlebar-label txt-low"
-      :limit-width "10"
-      :text apptitles
-    )
   )
 )
 

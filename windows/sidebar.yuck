@@ -188,7 +188,8 @@
         (for id in WAIFU_TAG_ID
           (button
             :class "sidebar-waifu-tag"
-            :onclick "${EWW_CMD} update waifu_art=\"$(scripts/waifu.py ${WAIFU_CATEGORIES_ARGS[id]} ${is_nsfw == 'True' ? 'nsfw' : 'sfw'})\" &"
+            ;:onclick "${EWW_CMD} update waifu_art=\"$(scripts/waifu.py ${WAIFU_CATEGORIES_ARGS[id]} ${is_nsfw == 'True' ? 'nsfw' : 'sfw'})\" &"
+            :onclick "scripts/./waifu.py ${WAIFU_CATEGORIES_ARGS[id]} ${is_nsfw == 'True' ? 'nsfw' : 'sfw'} &"
             {WAIFU_CATEGORIES[id]}
           )
         )
@@ -221,7 +222,6 @@
       :height 100
       (label ; A Quote
         :halign "start"
-        :valign "start"
         :text "EvIl EmPIREeE 'o' ... Laughin' all the way
         to the BaNk !! 💀" ;; sidebar_quote
       )

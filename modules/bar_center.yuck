@@ -2,12 +2,17 @@
   (box
     :halign "center"
     :class "bar_center"
-    (workspace)
+    (titlebar)
   )
 )
 
-(defwidget workspace []
-  (literal
-    :content scrpt_workspace
+(defwidget titlebar []
+  (box
+    :class "module"
+    (label
+      :class "titlebar-label txt-low"
+      :limit-width "10"
+      :text apptitles
+    )
   )
 )

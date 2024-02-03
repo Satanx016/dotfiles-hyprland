@@ -3,7 +3,13 @@
     :space-evenly false
     :halign "center"
     :class "bar-left"
-    (music)
+    (workspace)
+  )
+)
+
+(defwidget workspace []
+  (literal
+    :content scrpt_workspace
   )
 )
 

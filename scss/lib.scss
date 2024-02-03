@@ -1,18 +1,18 @@
 .test{
     background-color: $background;
     color: $foreground;
-    border: 2 solid;
+    border: 2px solid;
     border-color: $unfocused;
-    font-size: 16;
+    font-size: 16px;
     font-weight: bolder;
 }
 
 .module{
     background-color: $background;
     color: $foreground;
-    border: 2 solid;
-    border-color: $unfocused;
-    font-size: 16;
+    // border: 2px solid;
+    // border-color: $unfocused;
+    font-size: 16px;
     font-weight: bolder;
     padding: 0 10px 0 10px;
     margin: 0 4px 0 4px;
@@ -23,12 +23,12 @@
 }
 
 .icon {
-    font-size: 20;
+    font-size: 20px;
     color: $focused;
 }
 
 .sep {
-    font-size: 8;
+    font-size: 8px;
     font-weight: bolder;
     color: $foreground-alt
 }

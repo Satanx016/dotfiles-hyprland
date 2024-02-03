@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import json
 import os
-import psutil
 import random
 import subprocess
 import sys
@@ -43,7 +42,7 @@ def nsfw():
     os.system("eww update is_nsfw=" + str(isnsfw))
 
 
-def loadImage(mode, url, tag=None):
+def getImageUrl(mode, apiUrl, tag=None):
     setWaifuonValue("last_waifu_art", subprocess.getoutput("eww get waifu_art"))
     if mode == "--im":
         params = {
@@ -51,23 +50,32 @@ def loadImage(mode, url, tag=None):
             "height": ">=600",
             "is_nsfw": True if isNsfw == "nsfw" else False,
         }
-        response = requests.get(url, params=params)
+        response = requests.get(apiUrl, params=params)
         if response.status_code == 200:
             data = response.json()
             return data["images"][0]["url"]
     elif mode == "--pics":
-        response = requests.get(url, params=None)
+        response = requests.get(apiUrl, params=None)
         if response.status_code == 200:
             data = response.json()
             return data["url"]
     elif mode == "--af":
         params = {"offset": str(random.randint(0, 2373))}
-        response = requests.get(url, params)
+        response = requests.get(apiUrl, params)
         if response.status_code == 200:
             data = response.json()
             return data["image"]["url"]
     return print("Request failed with status code:" + str(response.status_code))
 
+
+def loadImage(mode, apiUrl, tag=None):
+    response = requests.get(getImageUrl(mode, apiUrl, tag))
+    if response.status_code == 200:
+        with open("assets/waifu/image.jpg", 'wb') as file:
+            file.write(response.content)
+    
+    os.system("eww update waifu_art=\"assets/waifu/image.jpg\"")
+    
 
 if mode == "url":
     pass
